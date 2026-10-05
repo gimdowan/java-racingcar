@@ -16,32 +16,28 @@ public class Application {
         }
         int play = sc.nextInt();
         for (int i = 0; i < play; i++) {
-            for (int j = 0; j < names.length; j++) {
+            for (int j = 0; j < cars.length; j++) {
                 int num = Randoms.pickNumberInRange(0, 9);
-                if (num >= 4) {
-                    tracks[j] += "-";
-                }
-
-
+                cars[j].move(num);
             }
-            for (int j = 0; j < names.length; j++) {
-                System.out.println(names[j].trim() + " : " + tracks[j]);
+            for (int j = 0; j < cars.length; j++) {
+                System.out.println(cars[j].getName() + " : " + "-".repeat(cars[j].getPosition()));
             }
             System.out.println();
-            sc.close();
         }
+        sc.close();
+
         int max = -1;
         String winners = "";
-        for (int j = 0; j < names.length; j++) {
-            int len = tracks[j].length();
+        for (int j = 0; j < cars.length; j++) {
+            int len = cars[j].getPosition();
             if (len > max) {
                 max = len;
-                winners = names[j].trim();          // 새 1등 → 우승자를 이 사람으로 교체
+                winners = cars[j].getName();          // 새 1등 → 우승자를 이 사람으로 교체
             } else if (len == max) {
-                winners += ", " + names[j].trim();  // 공동 1등 → 뒤에 이어 붙이기
+                winners += ", " + cars[j].getName();  // 공동 1등 → 뒤에 이어 붙이기
             }
         }
         System.out.println("최종 우승자 : " + winners);
-
     }
 }
