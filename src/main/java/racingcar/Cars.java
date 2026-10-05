@@ -13,29 +13,26 @@ public class Cars {
     }
 
     public void moveAll() {
-        for (int j = 0; j < cars.length; j++) {
+        for (int i = 0; i < cars.length; i++) {
             int num = Randoms.pickNumberInRange(0, 9);
-            cars[j].move(num);
+            cars[i].move(num);
         }
     }
 
-    public void printPositions() {
-        for (int j = 0; j < cars.length; j++) {
-            System.out.println(cars[j].getName() + " : " + "-".repeat(cars[j].getPosition()));
-        }
-        System.out.println();
+    public Car[] getCars() {
+        return cars;
     }
 
     public String getWinners() {
         int max = -1;
         String winners = "";
-        for (int j = 0; j < cars.length; j++) {
-            int position = cars[j].getPosition();
+        for (int i = 0; i < cars.length; i++) {
+            int position = cars[i].getPosition();
             if (position > max) {
                 max = position;
-                winners = cars[j].getName();          // 새 1등 → 우승자를 이 사람으로 교체
+                winners = cars[i].getName();
             } else if (position == max) {
-                winners += ", " + cars[j].getName();  // 공동 1등 → 뒤에 이어 붙이기
+                winners += ", " + cars[i].getName();
             }
         }
         return winners;
